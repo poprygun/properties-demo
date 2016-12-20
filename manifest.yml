@@ -1,7 +1,7 @@
 ---
 applications:
-- name: external-integrations-redis
+- name: properties-demo
   memory: 1G
-  path: target/external-integrations-redis.war
+  path: target/properties-demo.war
 
 

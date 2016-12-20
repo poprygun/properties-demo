@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create File</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Countries from property file.</h1>
+<div class="form-group blu-margin">
+    <select th:field="*{countries}">
+        <option value="NONE">---- Select ----</option>
+        <option th:each="country : ${countries.entrySet()}"
+                th:value="${country.key}"
+                th:text="${country.value}">Englishy</option>
+    </select>
+</div>
+</body>
+</html>
