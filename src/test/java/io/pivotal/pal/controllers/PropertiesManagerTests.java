@@ -31,7 +31,7 @@ public class PropertiesManagerTests {
 
     @Test
     public void shouldRenderCountries() throws Exception {
-        InputStream is = PropertiesManagerTests.class.getResourceAsStream("/countries.properties");
+        InputStream is = PropertiesManagerTests.class.getResourceAsStream("/properties-demo.properties");
         Properties expectedProperties = new Properties();
         expectedProperties.load(is);
         this.mockMvc.perform(get("/"))

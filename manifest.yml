@@ -2,6 +2,8 @@
 applications:
 - name: properties-demo
   memory: 1G
-  path: target/properties-demo.war
-
-
+  path: target/properties-demo.jar
+  env:
+    TRUST_CERTS: api.run.pez.pivotal.io
+  services:
+    - pal-demo-properties-config-server

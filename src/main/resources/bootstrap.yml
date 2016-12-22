@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: properties-demo
+
+security:
+  basic:
+    enabled: false

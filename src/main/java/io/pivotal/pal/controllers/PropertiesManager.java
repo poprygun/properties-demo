@@ -1,23 +1,22 @@
 package io.pivotal.pal.controllers;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
+import io.pivotal.pal.config.CountriesProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Properties;
+import java.util.Map;
 
 @Controller
 public class PropertiesManager {
 
-    @Value(value = "classpath:countries.properties")
-    private Resource countries;
+    @Autowired
+    private CountriesProperties countriesProperties;
 
     @GetMapping("/")
     public String fileData(Model model) throws Exception{
-        Properties countries = new Properties();
-        countries.load(this.countries.getInputStream());
+        Map<String, String> countries = countriesProperties.getCountries();
         model.addAttribute("countries", countries);
         return "countries";
     }
