@@ -1,10 +1,12 @@
 package io.pivotal.pal.controllers;
 
+import io.pivotal.pal.config.CountriesProperties;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,6 +26,9 @@ public class PropertiesManagerTests {
 
     private MockMvc mockMvc;
 
+    @MockBean
+    private CountriesProperties countriesProperties;
+
     @Before
     public void setup() {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
@@ -31,12 +36,9 @@ public class PropertiesManagerTests {
 
     @Test
     public void shouldRenderCountries() throws Exception {
-        InputStream is = PropertiesManagerTests.class.getResourceAsStream("/properties-demo.properties");
-        Properties expectedProperties = new Properties();
-        expectedProperties.load(is);
+
         this.mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("countries", expectedProperties))
                 .andExpect(view().name("countries"));
     }
 
