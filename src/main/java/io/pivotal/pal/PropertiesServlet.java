@@ -1,5 +1,6 @@
 package io.pivotal.pal;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -23,7 +24,7 @@ public class PropertiesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        InputStream propStream = getServletContext().getResourceAsStream("/WEB-INF/properties/app.properties");
+        InputStream propStream = new FileInputStream("properties/app.properties");
 
         Properties properties = new Properties();
         properties.load(propStream);
